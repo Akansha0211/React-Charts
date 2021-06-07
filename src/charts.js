@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
+import axios from 'axios';
 
 class Charts extends Component {
     state = { 
+      
         options:{
             chart:{
-                background: '#f4f4f4'
+                background: '#f4f4f4',
+                toolbar:{
+                    show:true
+                }
             },
             xaxis:{
                 categories:[
@@ -39,16 +44,27 @@ class Charts extends Component {
         }],
         
      }
+
+    async componentDidMount(){
+        const url ="https://sokt.io/c/app/uia7y4nwWWzsu6yzwUVk/graph";
+        const response = await axios.get(url);
+        const data = await response.data;
+        
+    }
+
     render() { 
         return ( 
-            <Chart
-                options ={this.state.options}
-                series={this.state.series}
-                type="line"
-                height = "450"
-                width="100%"
+            // <Chart
+            //     options ={this.state.options}
+            //     series={this.state.series}
+            //     type="line"
+            //     height = "450"
+            //     width="100%"
 
-            />
+            // />
+            <div>
+                <h1>Hello</h1>
+            </div>
          );
     }
 }
