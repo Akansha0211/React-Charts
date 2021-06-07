@@ -31,40 +31,38 @@ class Charts extends Component {
                 }
             }
         },
-        series:[{
-            name: 'Population',
-            data:[
-                53478393,
-                53483282,
-                7992742,
-                768292814,
-                83728133,
-                76271903
-            ]
-        }],
+        series: [
+            {
+              name: "series-1",
+              data: []
+            }
+          ]
+       
+     };
+
+     async componentDidMount(){
+        const response = axios.get("https://sokt.io/c/app/uia7y4nwWWzsu6yzwUVk/graph");
+        const data = (await response).data;
+        console.log(data);
+        this.setState({series:data.result});
+       
+        console.log(this.state.series);
+       
         
      }
-
-    async componentDidMount(){
-        const url ="https://sokt.io/c/app/uia7y4nwWWzsu6yzwUVk/graph";
-        const response = await axios.get(url);
-        const data = await response.data;
-        
-    }
-
+     
     render() { 
         return ( 
-            // <Chart
-            //     options ={this.state.options}
-            //     series={this.state.series}
-            //     type="line"
-            //     height = "450"
-            //     width="100%"
-
-            // />
             <div>
-                <h1>Hello</h1>
+                <Chart
+                    options={this.state.options}
+                    series={this.state.series}
+                    type="line"
+                    height = "450"
+                    width="100%"
+                />
             </div>
+            
          );
     }
 }
