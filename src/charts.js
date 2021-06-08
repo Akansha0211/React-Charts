@@ -26,8 +26,12 @@ class Charts extends Component {
         },
         series: [
             {
-              name: "series-1",
+              name: "views",
               data: []
+            },
+            {
+                name:'time',
+                data:[]
             }
           ]
        
@@ -43,14 +47,26 @@ class Charts extends Component {
        const arr = data.result;
     //    console.log(arr);
         const values = [];
+        const values1 = [];
        arr.map((item)=>{
             values.push(item.views)
+            values1.push(item.time)
             console.log(values)
+            console.log(values1)
        })
        this.setState({
-           series:[{
+           series:[
+            {
+               name:'views',
                data : values
-           }]
+           },
+           {
+               name:'time',
+               data: values1
+           }
+
+
+        ]
        })
        
               
