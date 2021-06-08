@@ -22,7 +22,17 @@ class Charts extends Component {
                 style:{
                     fontSize:'25px'
                 }
-            }
+            },
+            dataLabels: {
+                enabled: true,
+              },
+              legend: {
+                position: 'top',
+                horizontalAlign: 'right',
+                floating: true,
+                offsetY: -25,
+                offsetX: -5
+              },
         },
         series: [
             {
