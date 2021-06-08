@@ -13,14 +13,7 @@ class Charts extends Component {
                 }
             },
             xaxis:{
-                categories:[
-                    'Tamil Nadu',
-                    'Gujarat',
-                    'Punjab',
-                    'UttarPradesh',
-                    'Delhi',
-                    'Haryana'
-                ]
+                categories:[]
             },
             title:{
                 text:"Sample Line Chart",
@@ -44,24 +37,38 @@ class Charts extends Component {
         const response = axios.get("https://sokt.io/c/app/uia7y4nwWWzsu6yzwUVk/graph");
         const data = (await response).data;
         console.log(data);
-        this.setState({series:data.result});
+        // this.setState({series:data.result}); //  has an array     
+        // console.log(this.state.series);
+
+       const arr = data.result;
+    //    console.log(arr);
+        const values = [];
+       arr.map((item)=>{
+            values.push(item.views)
+            console.log(values)
+       })
+       this.setState({
+           series:[{
+               data : values
+           }]
+       })
        
-        console.log(this.state.series);
-       
-        
+              
      }
      
     render() { 
         return ( 
             <div>
-                <Chart
+                    <Chart
                     options={this.state.options}
                     series={this.state.series}
                     type="line"
                     height = "450"
                     width="100%"
                 />
+               
             </div>
+            
             
          );
     }
